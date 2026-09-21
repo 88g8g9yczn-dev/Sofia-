@@ -6,8 +6,7 @@
   <title>Made for You ❤️</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
     body { font-family: 'Montserrat', sans-serif; background: #0f050b; color: #fff; min-height: 100vh; overflow-x: hidden; position: relative; }
@@ -20,10 +19,9 @@
       z-index: -2;
     }
 
-    /* Modal for entering name */
     .name-modal {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-      background: rgba(5, 1, 3, 0.94); backdrop-filter: blur(15px);
+      background: rgba(5, 1, 3, 0.92); backdrop-filter: blur(15px);
       z-index: 1000; display: flex; justify-content: center; align-items: center;
       transition: opacity 0.8s ease, visibility 0.8s ease;
     }
@@ -66,7 +64,6 @@
     .card-title { font-family: 'Cormorant Garamond', serif; font-size: 26px; color: #ffccd5; margin-bottom: 10px; }
     .card-desc { font-size: 13px; color: #a0a0a0; line-height: 1.5; }
 
-    /* Modals for sections */
     .section-modal {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       background: rgba(10, 2, 7, 0.95); backdrop-filter: blur(20px); z-index: 500;
@@ -80,12 +77,11 @@
       display: flex; align-items: center; justify-content: center; z-index: 10;
     }
 
-    .flowers-section, .photos-section, .greeting-section { max-width: 900px; width: 100%; text-align: center; }
+    .flowers-section, .photos-section, .greeting-section { max-width: 800px; width: 100%; text-align: center; }
     .section-heading { font-family: 'Cormorant Garamond', serif; font-size: 34px; color: #ff4d6d; margin-bottom: 25px; }
 
     .flowers-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 30px; }
-    .flower-card img { width: 100%; height: 260px; object-fit: cover; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer; transition: transform 0.3s ease; }
-    .flower-card img:hover { transform: scale(1.02); }
+    .flower-card img { width: 100%; height: 260px; object-fit: cover; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); cursor: pointer; }
 
     .music-player {
       background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
@@ -100,89 +96,43 @@
     .vinyl-inner { width: 20px; height: 20px; background: #ff4d6d; border-radius: 50%; }
     @keyframes spin { 100% { transform: rotate(360deg); } }
 
-    .collage-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      grid-auto-rows: 200px;
-      gap: 15px;
-      margin-top: 15px;
-    }
-    .collage-item {
-      position: relative;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-    .collage-item:hover {
-      transform: translateY(-4px) scale(1.02);
-      border-color: rgba(255, 77, 109, 0.6);
-      z-index: 2;
-    }
-    .collage-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.4s ease;
-    }
-    .collage-item:hover img {
-      transform: scale(1.05);
-    }
-    /* Collage variations */
-    .collage-item.tall { grid-row: span 2; }
-    .collage-item.wide { grid-column: span 2; }
-    
-    @media (max-width: 600px) {
-      .collage-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
-      .collage-item.wide { grid-column: span 1; }
-    }
+    /* Красивый коллаж фото */
+    .photo-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin-top: 15px; }
+    .photo-card { background: rgba(255, 255, 255, 0.05); padding: 8px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, 0.1); transition: transform 0.2s; cursor: pointer; }
+    .photo-card:hover { transform: scale(1.03); }
+    .photo-card img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; display: block; }
 
-    /* Fullscreen Lightbox Modal */
+    /* Окно для просмотра фото во весь экран */
     .lightbox {
       position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
       background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(15px);
-      z-index: 2000; display: flex; flex-direction: column; justify-content: center; align-items: center;
-      opacity: 0; visibility: hidden; transition: all 0.4s ease; padding: 20px;
+      z-index: 2000; display: flex; align-items: center; justify-content: center;
+      opacity: 0; visibility: hidden; transition: opacity 0.3s ease;
     }
     .lightbox.active { opacity: 1; visibility: visible; }
-    .lightbox-img {
-      max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: 12px;
-      box-shadow: 0 10px 40px rgba(255, 77, 109, 0.3);
-      transform: scale(0.9); transition: transform 0.3s ease;
-    }
-    .lightbox.active .lightbox-img { transform: scale(1); }
-    .lightbox-close {
-      position: absolute; top: 25px; right: 25px; font-size: 30px; color: #fff;
-      cursor: pointer; width: 48px; height: 48px; border-radius: 50%;
-      background: rgba(255, 255, 255, 0.15); display: flex; align-items: center; justify-content: center;
-    }
+    .lightbox img { max-width: 92%; max-height: 85vh; border-radius: 12px; box-shadow: 0 0 30px rgba(255, 77, 109, 0.3); }
 
-    /* Elegant text formatting for greeting */
+    /* Поздравление */
     .greeting-text {
       font-family: 'Cormorant Garamond', serif;
       font-size: 20px;
       font-weight: 400;
-      line-height: 1.85;
+      line-height: 1.8;
       color: #fff0f3;
       text-align: justify;
       background: rgba(255, 255, 255, 0.03);
-      padding: 35px 30px;
+      padding: 30px 25px;
       border-radius: 20px;
       border: 1px solid rgba(255, 182, 193, 0.15);
       margin-bottom: 30px;
       letter-spacing: 0.3px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
     .firework-btn {
       padding: 14px 32px; font-size: 16px; border-radius: 50px; border: none;
       background: linear-gradient(135deg, #ff4d6d, #ff758f); color: #fff; cursor: pointer; font-weight: 600;
-      box-shadow: 0 0 25px rgba(255, 77, 109, 0.6); transition: transform 0.2s;
+      box-shadow: 0 0 25px rgba(255, 77, 109, 0.6);
     }
-    .firework-btn:hover { transform: scale(1.04); }
 
     .petal { position: fixed; top: -10%; user-select: none; pointer-events: none; z-index: 10; animation: fall linear infinite; }
     @keyframes fall { to { transform: translateY(115vh) rotate(360deg); } }
@@ -190,10 +140,9 @@
 </head>
 <body>
 
-  <!-- Background Effect -->
   <div class="bg-gradient"></div>
 
-  <!-- Name Entry Overlay -->
+  <!-- Модалка имени -->
   <div class="name-modal" id="nameModal">
     <div class="modal-box">
       <h2>С праздником! ✨</h2>
@@ -218,7 +167,7 @@
       <div class="card" onclick="openModal('photosModal')">
         <div class="card-icon">📸</div>
         <div class="card-title">Наши воспоминания</div>
-        <div class="card-desc">10 моментов из нашей истории (нажми, чтобы увеличить)</div>
+        <div class="card-desc">10 моментов (нажми на фото, чтобы открыть целиком)</div>
       </div>
       <div class="card" onclick="openModal('greetingModal')">
         <div class="card-icon">💌</div>
@@ -228,14 +177,14 @@
     </div>
   </div>
 
-  <!-- Flowers & Song Section -->
+  <!-- Цветы и Музыка -->
   <div class="section-modal" id="flowersModal">
     <div class="close-btn" onclick="closeModal('flowersModal')">✕</div>
     <div class="flowers-section">
       <h2 class="section-heading">Цветы, которые напоминают о тебе</h2>
       <div class="flowers-grid">
-        <div class="flower-card"><img src="flower1.jpg.jpg" onerror="this.onerror=null; this.src='flower1.jpg';" alt="Цветы 1" onclick="openLightbox(this.src)"></div>
-        <div class="flower-card"><img src="flower2.jpg.jpg" onerror="this.onerror=null; this.src='flower2.jpg';" alt="Цветы 2" onclick="openLightbox(this.src)"></div>
+        <div class="flower-card"><img src="flower1.jpg.jpg" data-fallback="flower1.jpg" onclick="openLightbox(this.src)" alt="Цветы 1"></div>
+        <div class="flower-card"><img src="flower2.jpg.jpg" data-fallback="flower2.jpg" onclick="openLightbox(this.src)" alt="Цветы 2"></div>
       </div>
       <div class="music-player">
         <div class="vinyl" id="vinylIcon"><div class="vinyl-inner"></div></div>
@@ -244,55 +193,41 @@
           <audio id="audioPlayer" controls style="width: 100%;">
             <source src="song.mp3.mp3" type="audio/mpeg">
             <source src="song.mp3" type="audio/mpeg">
-            Ваш браузер не поддерживает аудио.
+            <source src="song.m4a" type="audio/mp4">
+            <source src="song.wav" type="audio/wav">
           </audio>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- Воспоминания (10 Фото) -->
   <div class="section-modal" id="photosModal">
     <div class="close-btn" onclick="closeModal('photosModal')">✕</div>
     <div class="photos-section">
       <h2 class="section-heading">Наши воспоминания 📸</h2>
-      <p style="font-size: 13px; color: #bbb; margin-bottom: 15px;">Нажмите на любую фотографию, чтобы посмотреть её во весь экран</p>
-      
-      <div class="collage-grid">
-        <div class="collage-item tall">
-          <img src="photo1.jpg.jpg" onerror="this.onerror=null; this.src='photo1.jpg';" alt="Фото 1" onclick="openLightbox(this.src)">
-        </div>
-        <div class="collage-item">
-          <img src="photo2.jpg.heic" onerror="this.onerror=null; this.src='photo2.jpg.jpg'; this.onerror=function(){this.src='photo2.jpg';}" alt="Фото 2" onclick="openLightbox(this.src)">
-        </div>
-        <div class="collage-item wide">
-          <img src="photo3.jpg.jpg" onerror="this.onerror=null; this.src='photo3.jpg';" alt="Фото 3" onclick="openLightbox(this.src)">
-        </div>
-        <div class="collage-item">
-          <img src="photo4.jpg.jpg" onerror="this.onerror=null; this.src='photo4.jpg';" alt="Фото 4" onclick="openLightbox(this.src)">
-        </div>
-        <div class="collage-item tall">
-          <img src="photo5.jpg.jpg" onerror="this.onerror=null; this.src='photo5.jpg';" alt="Фото 5" onclick="openLightbox(this.src)">
-        </div>
-        <div class="collage-item">
-          <img src="photo6.jpg.jpg" onerror="this.onerror=null; this.src='photo6.jpg';" alt="Фото 6" onclick="openLightbox(this.src)">
-        </div>
-        <div class="collage-item wide">
-          <img src="photo7.jpg.jpg" onerror="this.onerror=null; this.src='photo7.jpg';" alt="Фото 7" onclick="openLightbox(this.src)">
-        </div>
-        <div class="collage-item">
-          <img src="photo8.jpg.jpg" onerror="this.onerror=null; this.src='photo8.jpg';" alt="Фото 8" onclick="openLightbox(this.src)">
-        </div>
-        <div class="collage-item">
-          <img src="photo9.jpg.jpg" onerror="this.onerror=null; this.src='photo9.jpg.heic'; this.onerror=function(){this.src='photo9.jpg';}" alt="Фото 9" onclick="openLightbox(this.src)">
-        </div>
-        <div class="collage-item">
-          <img src="photo10.jpg.jpg" onerror="this.onerror=null; this.src='photo10.jpg';" alt="Фото 10" onclick="openLightbox(this.src)">
-        </div>
+      <div class="photo-grid">
+        <div class="photo-card"><img src="photo1.jpg.jpg" data-fallback="photo1.jpg" onclick="openLightbox(this.src)" alt="1"></div>
+        <div class="photo-card"><img src="photo2.jpg.heic" data-fallback="photo2.jpg.jpg" onclick="openLightbox(this.src)" alt="2"></div>
+        <div class="photo-card"><img src="photo3.jpg.jpg" data-fallback="photo3.jpg" onclick="openLightbox(this.src)" alt="3"></div>
+        <div class="photo-card"><img src="photo4.jpg.jpg" data-fallback="photo4.jpg" onclick="openLightbox(this.src)" alt="4"></div>
+        <div class="photo-card"><img src="photo5.jpg.jpg" data-fallback="photo5.jpg" onclick="openLightbox(this.src)" alt="5"></div>
+        <div class="photo-card"><img src="photo6.jpg.jpg" data-fallback="photo6.jpg" onclick="openLightbox(this.src)" alt="6"></div>
+        <div class="photo-card"><img src="photo7.jpg.jpg" data-fallback="photo7.jpg" onclick="openLightbox(this.src)" alt="7"></div>
+        <div class="photo-card"><img src="photo8.jpg.jpg" data-fallback="photo8.jpg" onclick="openLightbox(this.src)" alt="8"></div>
+        <!-- Проверка подгрузки photo9 с любым расширением -->
+        <div class="photo-card"><img src="photo9.jpg.jpg" data-fallback="photo9.jpg.heic|photo9.jpg|photo9.png|photo9.heic|photo9.jpeg" onclick="openLightbox(this.src)" alt="9"></div>
+        <div class="photo-card"><img src="photo10.jpg.jpg" data-fallback="photo10.jpg" onclick="openLightbox(this.src)" alt="10"></div>
       </div>
     </div>
   </div>
 
-  <!-- Greeting Modal Section -->
+  <!-- Полноэкранный просмотр фото -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="Full view">
+  </div>
+
+  <!-- Поздравление -->
   <div class="section-modal" id="greetingModal">
     <div class="close-btn" onclick="closeModal('greetingModal')">✕</div>
     <div class="greeting-section">
@@ -307,35 +242,35 @@
     </div>
   </div>
 
-  <!-- Lightbox Element -->
-  <div class="lightbox" id="lightboxModal" onclick="closeLightbox()">
-    <div class="lightbox-close" onclick="closeLightbox()">✕</div>
-    <img src="" id="lightboxImage" class="lightbox-img" alt="Увеличенное фото" onclick="event.stopPropagation()">
-  </div>
-
   <script>
     function submitName() {
       const name = document.getElementById('userNameInput').value.trim();
       document.getElementById('madeForText').innerText = name ? `Made Just for ${name}` : `Made Just for You`;
       document.getElementById('nameModal').classList.add('hidden');
     }
-    
     function openModal(id) { document.getElementById(id).classList.add('active'); }
     function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
-    /* Lightbox Fullscreen viewing */
     function openLightbox(src) {
-      const lb = document.getElementById('lightboxModal');
-      const lbImg = document.getElementById('lightboxImage');
-      lbImg.src = src;
-      lb.classList.add('active');
+      document.getElementById('lightboxImg').src = src;
+      document.getElementById('lightbox').classList.add('active');
     }
-
     function closeLightbox() {
-      document.getElementById('lightboxModal').classList.remove('active');
+      document.getElementById('lightbox').classList.remove('active');
     }
 
-    /* Music Player Vinyl Rotation */
+    // Автоматический подбор битых файлов
+    document.querySelectorAll('img').forEach(img => {
+      img.onerror = function() {
+        const fallbacks = (this.getAttribute('data-fallback') || '').split('|');
+        if (fallbacks.length && fallbacks[0]) {
+          const next = fallbacks.shift();
+          this.setAttribute('data-fallback', fallbacks.join('|'));
+          this.src = next;
+        }
+      };
+    });
+
     const audio = document.getElementById('audioPlayer');
     const vinyl = document.getElementById('vinylIcon');
     if (audio) {
@@ -343,7 +278,6 @@
       audio.onpause = () => vinyl.classList.remove('playing');
     }
 
-    /* Falling Petals Background */
     function createPetals() {
       const symbols = ['🌸', '🌺', '🌹', '✨', '🌷'];
       setInterval(() => {
@@ -359,7 +293,6 @@
     }
     createPetals();
 
-    /* Heart / Kiss Firework Burst */
     function launchFireworks() {
       const items = ['❤️', '💋', '💖', '💕', '✨'];
       for (let i = 0; i < 60; i++) {
