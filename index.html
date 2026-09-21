@@ -1,848 +1,586 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>RAVIX.KZ — Локализация и активация авто в Казахстане</title>
-
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    background: #07080a;
-    color: #fff;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-a {
-    color: inherit;
-    text-decoration: none;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-}
-
-/* HEADER */
-header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    background: rgba(7,8,10,.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(255,255,255,.08);
-}
-
-.nav {
-    height: 75px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.logo {
-    font-size: 25px;
-    font-weight: 900;
-    letter-spacing: -1px;
-}
-
-.logo span {
-    color: #d9ff38;
-}
-
-.nav-links {
-    display: flex;
-    gap: 30px;
-    color: #999;
-    font-size: 14px;
-}
-
-.nav-links a:hover {
-    color: white;
-}
-
-.nav-button {
-    background: #d9ff38;
-    color: black;
-    padding: 11px 18px;
-    border-radius: 12px;
-    font-weight: bold;
-    transition: .2s;
-}
-
-.nav-button:hover {
-    transform: translateY(-2px);
-}
-
-/* HERO */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    padding-top: 100px;
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::after {
-    content: "";
-    position: absolute;
-    width: 700px;
-    height: 700px;
-    right: -250px;
-    top: -200px;
-    background: radial-gradient(circle, rgba(217,255,56,.15), transparent 65%);
-    pointer-events: none;
-}
-
-.badge {
-    display: inline-block;
-    padding: 8px 13px;
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 30px;
-    color: #aaa;
-    font-size: 13px;
-}
-
-.badge::before {
-    content: "●";
-    color: #d9ff38;
-    margin-right: 8px;
-}
-
-.hero h1 {
-    font-size: clamp(45px, 7vw, 90px);
-    line-height: .95;
-    letter-spacing: -3px;
-    margin-top: 25px;
-}
-
-.hero h1 span {
-    color: #d9ff38;
-}
-
-.hero-text {
-    max-width: 650px;
-    margin-top: 30px;
-    color: #8e9299;
-    font-size: 18px;
-    line-height: 1.6;
-}
-
-.buttons {
-    display: flex;
-    gap: 12px;
-    margin-top: 30px;
-}
-
-.button {
-    padding: 15px 22px;
-    border-radius: 14px;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-    transition: .2s;
-    text-align: center;
-}
-
-.button:hover {
-    transform: translateY(-3px);
-}
-
-.primary {
-    background: #d9ff38;
-    color: #050600;
-}
-
-.secondary {
-    background: #15171b;
-    color: white;
-    border: 1px solid rgba(255,255,255,.08);
-}
-
-/* STATS */
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 12px;
-    margin-top: 70px;
-}
-
-.stat {
-    padding: 20px;
-    border-radius: 18px;
-    background: rgba(255,255,255,.025);
-    border: 1px solid rgba(255,255,255,.08);
-}
-
-.stat strong {
-    font-size: 25px;
-}
-
-.stat p {
-    color: #777;
-    margin-top: 5px;
-    font-size: 13px;
-}
-
-/* SECTION */
-section {
-    padding: 100px 0;
-}
-
-.section-title {
-    font-size: 45px;
-    letter-spacing: -2px;
-    margin-bottom: 12px;
-}
-
-.section-description {
-    color: #858991;
-    max-width: 550px;
-    margin-bottom: 40px;
-}
-
-/* BRANDS */
-.brands {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 12px;
-}
-
-.brand {
-    min-height: 140px;
-    padding: 25px;
-    border-radius: 22px;
-    background: linear-gradient(145deg, #121419, #0c0e11);
-    border: 1px solid rgba(255,255,255,.08);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    transition: .25s;
-}
-
-.brand:hover {
-    transform: translateY(-5px);
-    border-color: rgba(217,255,56,.4);
-}
-
-.brand h3 {
-    font-size: 23px;
-}
-
-.brand p {
-    color: #777;
-    font-size: 13px;
-}
-
-/* CALCULATOR */
-.calculator {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-    padding: 15px;
-    background: #111318;
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 28px;
-}
-
-.form {
-    padding: 30px;
-}
-
-.form h3 {
-    font-size: 30px;
-    margin-bottom: 10px;
-}
-
-.form p {
-    color: #777;
-    margin-bottom: 20px;
-}
-
-label {
-    display: block;
-    color: #999;
-    font-size: 13px;
-    margin-top: 17px;
-    margin-bottom: 7px;
-}
-
-input, select {
-    width: 100%;
-    padding: 15px;
-    background: #08090c;
-    border: 1px solid rgba(255,255,255,.1);
-    color: white;
-    border-radius: 13px;
-    outline: none;
-    font-size: 15px;
-}
-
-input:focus, select:focus {
-    border-color: #d9ff38;
-}
-
-/* PRICE CARD */
-.price-card {
-    padding: 30px;
-    border-radius: 22px;
-    background: #08090b;
-    border: 1px solid rgba(255,255,255,.08);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.price-title {
-    color: #777;
-}
-
-.price {
-    font-size: 50px;
-    font-weight: 900;
-    letter-spacing: -2px;
-    margin-top: 15px;
-}
-
-.price span {
-    font-size: 18px;
-    color: #777;
-    letter-spacing: 0;
-}
-
-.features {
-    margin-top: 25px;
-    display: grid;
-    gap: 12px;
-    color: #aaa;
-    font-size: 14px;
-}
-
-.features div::before {
-    content: "✓";
-    color: #d9ff38;
-    margin-right: 10px;
-}
-
-/* PROCESS */
-.process {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 12px;
-}
-
-.step {
-    padding: 28px;
-    background: #101216;
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 22px;
-}
-
-.step-number {
-    color: #d9ff38;
-    font-size: 12px;
-    font-weight: bold;
-}
-
-.step h3 {
-    margin-top: 40px;
-    font-size: 23px;
-}
-
-.step p {
-    color: #777;
-    margin-top: 10px;
-    line-height: 1.5;
-}
-
-/* FAQ */
-.faq {
-    max-width: 850px;
-}
-
-details {
-    padding: 20px 0;
-    border-top: 1px solid rgba(255,255,255,.08);
-}
-
-summary {
-    cursor: pointer;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-}
-
-summary::after {
-    content: "+";
-    color: #d9ff38;
-}
-
-details[open] summary::after {
-    content: "−";
-}
-
-details p {
-    color: #777;
-    margin-top: 12px;
-    line-height: 1.5;
-}
-
-/* CTA */
-.cta {
-    padding: 70px 30px;
-    border-radius: 30px;
-    text-align: center;
-    background: radial-gradient(circle at 80% 20%, rgba(217,255,56,.12), transparent 35%), #111318;
-    border: 1px solid rgba(255,255,255,.08);
-}
-
-.cta h2 {
-    font-size: 48px;
-    letter-spacing: -2px;
-}
-
-.cta p {
-    max-width: 600px;
-    margin: 15px auto 25px;
-    color: #777;
-}
-
-/* FOOTER */
-footer {
-    padding: 35px 0;
-    border-top: 1px solid rgba(255,255,255,.08);
-    color: #666;
-    font-size: 13px;
-}
-
-.footer {
-    display: flex;
-    justify-content: space-between;
-}
-
-/* MODAL */
-.modal {
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,.85);
-    backdrop-filter: blur(10px);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    z-index: 2000;
-}
-
-.modal.active {
-    display: flex;
-}
-
-.modal-box {
-    width: 100%;
-    max-width: 500px;
-    padding: 30px;
-    border-radius: 25px;
-    background: #111318;
-    border: 1px solid rgba(255,255,255,.1);
-}
-
-.close {
-    float: right;
-    background: none;
-    border: none;
-    color: #888;
-    font-size: 25px;
-    cursor: pointer;
-}
-
-.modal-box h3 {
-    font-size: 28px;
-}
-
-.modal-box p {
-    color: #777;
-    margin-top: 8px;
-    font-size: 14px;
-}
-
-/* MOBILE */
-@media(max-width:800px) {
-    .nav-links { display: none; }
-    .stats { grid-template-columns: repeat(2,1fr); }
-    .brands { grid-template-columns: repeat(2,1fr); }
-    .calculator { grid-template-columns: 1fr; }
-    .process { grid-template-columns: 1fr; }
-    .hero h1 { letter-spacing: -2px; }
-    .cta h2 { font-size: 36px; }
-}
-
-@media(max-width:500px) {
-    .container { width: 92%; }
-    .stats { grid-template-columns: 1fr; }
-    .brands { grid-template-columns: 1fr; }
-    .buttons { flex-direction: column; }
-    .button { text-align: center; }
-    .hero { padding-top: 120px; }
-    section { padding: 70px 0; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Made for You ❤️</title>
+  <!-- Подключение красивого шрифта Cormorant Garamond -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: #0f050b;
+      color: #fff;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Фновый анимированный градиент */
+    .bg-gradient {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: radial-gradient(circle at 20% 30%, rgba(220, 53, 98, 0.25) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 70%, rgba(186, 24, 27, 0.2) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, rgba(10, 2, 7, 1) 0%, rgba(5, 1, 3, 1) 100%);
+      z-index: -2;
+    }
+
+    /* Модальное окно ввода имени */
+    .name-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(5, 1, 3, 0.92);
+      backdrop-filter: blur(15px);
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .name-modal.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .modal-box {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 182, 193, 0.2);
+      padding: 40px 30px;
+      border-radius: 24px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+    }
+
+    .modal-box h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      margin-bottom: 15px;
+      color: #ffccd5;
+    }
+
+    .modal-box p {
+      font-size: 14px;
+      color: #bbb;
+      margin-bottom: 25px;
+    }
+
+    .modal-box input {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      font-size: 16px;
+      text-align: center;
+      outline: none;
+      margin-bottom: 20px;
+      transition: border 0.3s;
+    }
+
+    .modal-box input:focus {
+      border-color: #ff4d6d;
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      background: linear-gradient(135deg, #ff4d6d, #c9184a);
+      color: #fff;
+      font-weight: 600;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 5px 20px rgba(255, 77, 109, 0.4);
+      transition: transform 0.2s;
+    }
+
+    .btn-submit:hover {
+      transform: scale(1.02);
+    }
+
+    /* Шапка сайта */
+    header {
+      text-align: center;
+      padding: 50px 20px 30px;
+    }
+
+    .made-for {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, #fff 30%, #ff8fa3 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 1px;
+    }
+
+    /* Главная сетка меню (3 карточки) */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(255, 77, 109, 0.5);
+      box-shadow: 0 15px 35px rgba(255, 77, 109, 0.2);
+    }
+
+    .card-icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .card-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      color: #ffccd5;
+      margin-bottom: 10px;
+    }
+
+    .card-desc {
+      font-size: 13px;
+      color: #a0a0a0;
+      line-height: 1.5;
+    }
+
+    /* Экран развернутых разделов */
+    .section-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(10, 2, 7, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      overflow-y: auto;
+      padding: 60px 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.5s ease;
+    }
+
+    .section-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      font-size: 28px;
+      color: #fff;
+      cursor: pointer;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s;
+    }
+
+    .close-btn:hover {
+      background: rgba(255, 77, 109, 0.5);
+    }
+
+    /* Раздел 1: Цветы & Песня */
+    .flowers-section {
+      max-width: 900px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .section-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      color: #ff4d6d;
+      margin-bottom: 30px;
+    }
+
+    .flowers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .flower-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .music-player {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 30px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      text-align: left;
+    }
+
+    .vinyl {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #333 30%, #111 70%);
+      border: 2px solid #555;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: spin 5s linear infinite paused;
+    }
+
+    .vinyl.playing {
+      animation-play-state: running;
+    }
+
+    .vinyl-inner {
+      width: 25px;
+      height: 25px;
+      background: #ff4d6d;
+      border-radius: 50%;
+    }
+
+    @keyframes spin {
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Раздел 2: 10 Фотографий */
+    .photos-section {
+      max-width: 1100px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .photo-card {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .photo-card:hover {
+      transform: scale(1.03);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    /* Раздел 3: Поздравление */
+    .greeting-section {
+      max-width: 800px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .greeting-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      line-height: 1.8;
+      color: #fff0f3;
+      text-align: justify;
+      background: rgba(255, 255, 255, 0.03);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 182, 193, 0.2);
+      margin-bottom: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .firework-btn {
+      padding: 16px 36px;
+      font-size: 18px;
+      border-radius: 50px;
+      border: none;
+      background: linear-gradient(135deg, #ff4d6d, #ff758f);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 0 25px rgba(255, 77, 109, 0.6);
+      transition: transform 0.2s;
+    }
+
+    .firework-btn:hover {
+      transform: scale(1.05);
+    }
+
+    /* Падающие лепестки */
+    .petal {
+      position: fixed;
+      top: -10%;
+      user-select: none;
+      pointer-events: none;
+      z-index: 10;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(115vh) rotate(360deg);
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-    <div class="container nav">
-        <a href="#" class="logo">RAVI<span>X</span></a>
-        <nav class="nav-links">
-            <a href="#services">Услуги</a>
-            <a href="#calculator">Стоимость</a>
-            <a href="#process">Как работает</a>
-            <a href="#faq">FAQ</a>
-        </nav>
-        <a href="#calculator" class="nav-button">Рассчитать</a>
-    </div>
-</header>
+  <div class="bg-gradient"></div>
 
-<main>
-    <!-- HERO -->
-    <section class="hero">
-        <div class="container">
-            <div class="badge">Сервис локализации автомобилей в РК</div>
-            <h1>Ваш автомобиль.<br><span>Ваш язык.</span></h1>
-            <p class="hero-text">
-                RAVIX — авто-платформа локализации и адаптации мультимедиа для китайских автомобилей. Русский и казахский интерфейсы, установка приложений и полная адаптация.
-            </p>
-
-            <div class="buttons">
-                <a href="#calculator" class="button primary">Рассчитать стоимость</a>
-                <a href="#process" class="button secondary">Как это работает</a>
-            </div>
-
-            <div class="stats">
-                <div class="stat">
-                    <strong>7+</strong>
-                    <p>марок автомобилей</p>
-                </div>
-                <div class="stat">
-                    <strong>VIN</strong>
-                    <p>проверка привязки</p>
-                </div>
-                <div class="stat">
-                    <strong>24/7</strong>
-                    <p>онлайн приём заказов</p>
-                </div>
-                <div class="stat">
-                    <strong>KZ / RU</strong>
-                    <p>полная локализация</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services">
-        <div class="container">
-            <h2 class="section-title">Поддерживаемые марки</h2>
-            <p class="section-description">Поддерживаем самые популярные бренды китайского автопрома.</p>
-
-            <div class="brands">
-                <div class="brand">
-                    <h3>CHANGAN</h3>
-                    <p>Uni-K, Uni-V, CS55, CS75</p>
-                </div>
-                <div class="brand">
-                    <h3>CHERY</h3>
-                    <p>Tiggo 7/8/9 Pro, Arrizo</p>
-                </div>
-                <div class="brand">
-                    <h3>HAVAL</h3>
-                    <p>Jolion, Dargo, H6, F7</p>
-                </div>
-                <div class="brand">
-                    <h3>JETOUR</h3>
-                    <p>Dashing, X70, X90, T2</p>
-                </div>
-                <div class="brand">
-                    <h3>GEELY</h3>
-                    <p>Monjaro, Coolray, Tugella</p>
-                </div>
-                <div class="brand">
-                    <h3>JAC</h3>
-                    <p>JS4, JS6, J7</p>
-                </div>
-                <div class="brand">
-                    <h3>BYD</h3>
-                    <p>Song Plus, Han, Tang, Qin</p>
-                </div>
-                <div class="brand">
-                    <h3>MORE</h3>
-                    <p>Zeekr, Li Auto, Voyah</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CALCULATOR -->
-    <section id="calculator">
-        <div class="container">
-            <h2 class="section-title">Рассчитать заказ</h2>
-            <p class="section-description">Выберите параметры автомобиля для расчета стоимости.</p>
-
-            <div class="calculator">
-                <div class="form">
-                    <h3>Конфигуратор</h3>
-                    <p>Заполните детали для формирования заявки.</p>
-
-                    <label>Марка автомобиля</label>
-                    <select id="brand">
-                        <option value="0">Выберите марку</option>
-                        <option value="25000">CHANGAN</option>
-                        <option value="28000">CHERY</option>
-                        <option value="30000">HAVAL</option>
-                        <option value="27000">JETOUR</option>
-                        <option value="32000">GEELY</option>
-                        <option value="24000">JAC</option>
-                        <option value="35000">BYD</option>
-                    </select>
-
-                    <label>Модель</label>
-                    <input id="model" placeholder="Например: Monjaro, Uni-V, Song Plus" />
-
-                    <label>Языковой пакет</label>
-                    <select id="package">
-                        <option value="0">RU — Русский язык</option>
-                        <option value="5000">KZ/RU — Русский + Казахский язык</option>
-                        <option value="10000">FULL — Языки + Приложения и Яндекс Навигатор</option>
-                    </select>
-
-                    <label>Формат работы</label>
-                    <select id="serviceType">
-                        <option value="online">Дистанционно (Файл + Пошаговая видеоинструкция)</option>
-                        <option value="offline">Запись в сервис (Прошивка мастером в боксе)</option>
-                    </select>
-
-                    <label>VIN-код автомобиля (17 символов)</label>
-                    <input id="vin" maxlength="17" placeholder="Например: L3EFH23..." />
-                </div>
-
-                <div class="price-card">
-                    <div>
-                        <div class="price-title">Ориентировочная стоимость</div>
-                        <div class="price" id="price">— <span>₸</span></div>
-
-                        <div class="features">
-                            <div>Проверка совместимости по VIN</div>
-                            <div>Полная адаптация под Казахстан</div>
-                            <div>Гарантия и персональное сопровождение</div>
-                        </div>
-                    </div>
-
-                    <button class="button primary" id="orderButton" style="width:100%; margin-top:20px;">
-                        Оформить заявку
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section id="process">
-        <div class="container">
-            <h2 class="section-title">Как это работает</h2>
-            <p class="section-description">Три быстрых шага до готового интерфейса.</p>
-
-            <div class="process">
-                <div class="step">
-                    <div class="step-number">01 / ЗАКАЗ</div>
-                    <h3>Оформляете заявку</h3>
-                    <p>Заполняете марку, модель, VIN и предпочитаемый формат прошивки.</p>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">02 / ПРОВЕРКА</div>
-                    <h3>Подтверждаем софт</h3>
-                    <p>Проверяем совместимость по VIN и подготавливаем языковой пакет.</p>
-                </div>
-
-                <div class="step">
-                    <div class="step-number">03 / ЛОКАЛИЗАЦИЯ</div>
-                    <h3>Активируете систему</h3>
-                    <p>Получаете готовые файлы с видеоинструкцией или приезжаете в сервис к мастеру.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq">
-        <div class="container">
-            <h2 class="section-title">Часто задаваемые вопросы</h2>
-            <p class="section-description">Всё, что нужно знать перед прошивкой.</p>
-
-            <div class="faq">
-                <details>
-                    <summary>Зачем указывать VIN-код?</summary>
-                    <p>VIN необходим для точной проверки версии головного устройства и правильного подбора активации.</p>
-                </details>
-                <details>
-                    <summary>Есть ли адаптация на казахский язык?</summary>
-                    <p>Да! Мы предоставляем полноценные локализованные языковые пакеты с поддержкой казахского и русского языков.</p>
-                </details>
-                <details>
-                    <summary>Смогу ли я активировать систему сам дистанционно?</summary>
-                    <p>Да. Мы высылаем специальный архив и подробное пошаговое видео. Всё делается за 10–15 минут через обычную USB-флешку.</p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <!-- CTA -->
-    <section>
-        <div class="container">
-            <div class="cta">
-                <h2>Готовы перевести авто на ваш язык?</h2>
-                <p>Рассчитайте стоимость на сайте и отправьте заявку напрямую специалисту.</p>
-                <a href="#calculator" class="button primary">Начать сейчас</a>
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <div class="container footer">
-        <div>© 2026 RAVIX.KZ</div>
-        <div>Активация • Локализация • Казахский и Русский язык</div>
-    </div>
-</footer>
-
-<!-- MODAL -->
-<div class="modal" id="modal">
+  <!-- Окно ввода имени -->
+  <div class="name-modal" id="nameModal">
     <div class="modal-box">
-        <button class="close" id="close">×</button>
-        <h3>Заявка RAVIX</h3>
-        <p id="orderInfo">Укажите контактные данные.</p>
-
-        <label>Ваше имя</label>
-        <input id="name" placeholder="Введите имя" />
-
-        <label>Телефон / WhatsApp</label>
-        <input id="phone" placeholder="+7 700 000 00 00" />
-
-        <button class="button primary" style="width:100%; margin-top:20px;" id="send">
-            Отправить в WhatsApp
-        </button>
+      <h2>С праздником! ✨</h2>
+      <p>Введи свое имя, чтобы открыть поздравление:</p>
+      <input type="text" id="userNameInput" placeholder="Твое имя..." autocomplete="off">
+      <button class="btn-submit" onclick="submitName()">Войти ❤️</button>
     </div>
-</div>
+  </div>
 
-<script>
-const brand = document.getElementById("brand");
-const pack = document.getElementById("package");
-const serviceType = document.getElementById("serviceType");
-const price = document.getElementById("price");
-const model = document.getElementById("model");
-const vin = document.getElementById("vin");
-const modal = document.getElementById("modal");
-const orderButton = document.getElementById("orderButton");
-const close = document.getElementById("close");
-const send = document.getElementById("send");
-const orderInfo = document.getElementById("orderInfo");
+  <!-- Шапка -->
+  <header>
+    <div class="made-for" id="madeForText">Made Just for You</div>
+    <p class="subtitle">Нажми на любой раздел ниже</p>
+  </header>
 
-function calculatePrice() {
-    let brandPrice = Number(brand.value);
-    let packagePrice = Number(pack.value);
+  <!-- Главные 3 карточки -->
+  <div class="container">
+    <div class="menu-grid">
+      
+      <!-- Карточка 1 -->
+      <div class="card" onclick="openModal('flowersModal')">
+        <div class="card-icon">🌸</div>
+        <div class="card-title">Цветы & Наша песня</div>
+        <div class="card-desc">Цветы, которые ассоциируются с тобой, и особенная музыка</div>
+      </div>
 
-    if (brandPrice > 0) {
-        let total = brandPrice + packagePrice;
-        price.innerHTML = total.toLocaleString("ru-RU") + ' <span>₸</span>';
-    } else {
-        price.innerHTML = '— <span>₸</span>';
+      <!-- Карточка 2 -->
+      <div class="card" onclick="openModal('photosModal')">
+        <div class="card-icon">📸</div>
+        <div class="card-title">Наши воспоминания</div>
+        <div class="card-desc">10 моментов из нашей истории</div>
+      </div>
+
+      <!-- Карточка 3 -->
+      <div class="card" onclick="openModal('greetingModal')">
+        <div class="card-icon">💌</div>
+        <div class="card-title">Поздравление</div>
+        <div class="card-desc">Самое главное послание для тебя</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Раздел 1: Цветы и песня -->
+  <div class="section-modal" id="flowersModal">
+    <div class="close-btn" onclick="closeModal('flowersModal')">✕</div>
+    <div class="flowers-section">
+      <h2 class="section-heading">Цветы, которые напоминают о тебе</h2>
+      <div class="flowers-grid">
+        <div class="flower-card">
+          <!-- 💡 Вставьте имя вашего файла первого фото цветов -->
+          <img src="flower1.jpg" onerror="this.src='https://picsum.photos/400/500?random=101'" alt="Цветы 1">
+        </div>
+        <div class="flower-card">
+          <!-- 💡 Вставьте имя вашего файла второго фото цветов -->
+          <img src="flower2.jpg" onerror="this.src='https://picsum.photos/400/500?random=102'" alt="Цветы 2">
+        </div>
+      </div>
+
+      <div class="music-player">
+        <div class="vinyl" id="vinylIcon">
+          <div class="vinyl-inner"></div>
+        </div>
+        <div>
+          <h3 style="margin-bottom: 5px; color: #ffccd5;">Песня, которая ассоциируется с нами</h3>
+          <!-- 💡 Вставьте имя вашей песни (например src="song.mp3") -->
+          <audio id="audioPlayer" controls src="song.mp3" style="margin-top: 10px; width: 100%;"></audio>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Раздел 2: 10 Фотографий -->
+  <div class="section-modal" id="photosModal">
+    <div class="close-btn" onclick="closeModal('photosModal')">✕</div>
+    <div class="photos-section">
+      <h2 class="section-heading">Наши воспоминания 📸</h2>
+      <div class="photo-grid">
+        <!-- 💡 10 Слотов под ваши фото (photo1.jpg - photo10.jpg) -->
+        <div class="photo-card"><img src="photo1.jpg" onerror="this.src='https://picsum.photos/300/400?random=1'" alt="Фото 1"></div>
+        <div class="photo-card"><img src="photo2.jpg" onerror="this.src='https://picsum.photos/300/400?random=2'" alt="Фото 2"></div>
+        <div class="photo-card"><img src="photo3.jpg" onerror="this.src='https://picsum.photos/300/400?random=3'" alt="Фото 3"></div>
+        <div class="photo-card"><img src="photo4.jpg" onerror="this.src='https://picsum.photos/300/400?random=4'" alt="Фото 4"></div>
+        <div class="photo-card"><img src="photo5.jpg" onerror="this.src='https://picsum.photos/300/400?random=5'" alt="Фото 5"></div>
+        <div class="photo-card"><img src="photo6.jpg" onerror="this.src='https://picsum.photos/300/400?random=6'" alt="Фото 6"></div>
+        <div class="photo-card"><img src="photo7.jpg" onerror="this.src='https://picsum.photos/300/400?random=7'" alt="Фото 7"></div>
+        <div class="photo-card"><img src="photo8.jpg" onerror="this.src='https://picsum.photos/300/400?random=8'" alt="Фото 8"></div>
+        <div class="photo-card"><img src="photo9.jpg" onerror="this.src='https://picsum.photos/300/400?random=9'" alt="Фото 9"></div>
+        <div class="photo-card"><img src="photo10.jpg" onerror="this.src='https://picsum.photos/300/400?random=10'" alt="Фото 10"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Раздел 3: Поздравление -->
+  <div class="section-modal" id="greetingModal">
+    <div class="close-btn" onclick="closeModal('greetingModal')">✕</div>
+    <div class="greeting-section">
+      <h2 class="section-heading">С Днём Рождения! 🎉</h2>
+      <div class="greeting-text">
+        Сегодня наступил невероятно прекрасный день — день, когда ты появилась на свет, моя самая яркая и светлая. Я безумно благодарен судьбе за каждый день, проведенный рядом с тобой. Ты принесла в мою жизнь столько тепла, эмоций и искренней любви, сколько я даже не мог себе представить!<br><br>
+        Ты удивляешь меня своей красотой, нежностью, простотой и доброй душой. Твоя улыбка — это тепло на душе даже в самый хмурый день, а твои объятия дают чувство полнейшего спокойствия и счастья.<br><br>
+        В этот особенный День Рождения я хочу пожелать тебе исполнения всех твоих самых заветных желаний! Пусть каждый шаг приносит радость, вдохновение и успех, а твои глаза всегда сияют только от искреннего счастья.<br><br>
+        Я обещаю всегда поддерживать тебя, беречь твою улыбку и быть надежной опорой, с которой ты будешь чувствовать себя самой любимой и ценной девушкой во вселенной. Я тебя люблю ❤️
+      </div>
+      <button class="firework-btn" onclick="launchFireworks()">Запустить салют ❤️💋</button>
+    </div>
+  </div>
+
+  <script>
+    // Ввод имени
+    function submitName() {
+      const name = document.getElementById('userNameInput').value.trim();
+      if (name) {
+        document.getElementById('madeForText').innerText = `Made Just for ${name}`;
+      } else {
+        document.getElementById('madeForText').innerText = `Made Just for You`;
+      }
+      document.getElementById('nameModal').classList.add('hidden');
     }
-}
 
-brand.addEventListener("change", calculatePrice);
-pack.addEventListener("change", calculatePrice);
-
-orderButton.addEventListener("click", function() {
-    if (brand.value === "0") {
-        alert("Пожалуйста, выберите марку автомобиля.");
-        return;
+    // Управление модальными окнами
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
     }
 
-    if (!model.value.trim()) {
-        alert("Пожалуйста, укажите модель автомобиля.");
-        return;
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
     }
 
-    let vinValue = vin.value.trim();
-    if (vinValue.length !== 17) {
-        alert("VIN-код должен состоять ровно из 17 символов.");
-        return;
+    // Анимация пластинки при проигрывании
+    const audio = document.getElementById('audioPlayer');
+    const vinyl = document.getElementById('vinylIcon');
+
+    if (audio) {
+      audio.onplay = () => vinyl.classList.add('playing');
+      audio.onpause = () => vinyl.classList.remove('playing');
     }
 
-    let brandName = brand.options[brand.selectedIndex].text;
-    let packageName = pack.options[pack.selectedIndex].text;
-    let serviceTypeName = serviceType.options[serviceType.selectedIndex].text;
+    // Анимация падающих лепестков
+    function createPetals() {
+      const symbols = ['🌸', '🌺', '🌹', '✨', '🌷'];
+      setInterval(() => {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        petal.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        petal.style.fontSize = (Math.random() * 10 + 15) + 'px';
+        document.body.appendChild(petal);
 
-    orderInfo.innerHTML = `<strong>${brandName} ${model.value.trim()}</strong><br>Пакет: ${packageName}<br>Формат: ${serviceTypeName}<br>VIN: ${vinValue}`;
-    modal.classList.add("active");
-});
-
-close.addEventListener("click", function() {
-    modal.classList.remove("active");
-});
-
-modal.addEventListener("click", function(event) {
-    if (event.target === modal) {
-        modal.classList.remove("active");
+        setTimeout(() => petal.remove(), 6000);
+      }, 400);
     }
-});
+    createPetals();
 
-send.addEventListener("click", function() {
-    let name = document.getElementById("name").value.trim();
-    let phone = document.getElementById("phone").value.trim();
+    // Салют из сердечек и поцелуев
+    function launchFireworks() {
+      const items = ['❤️', '💋', '💖', '💕', '✨'];
+      for (let i = 0; i < 60; i++) {
+        setTimeout(() => {
+          const elem = document.createElement('div');
+          elem.innerText = items[Math.floor(Math.random() * items.length)];
+          elem.style.position = 'fixed';
+          elem.style.left = Math.random() * 100 + 'vw';
+          elem.style.top = '100vh';
+          elem.style.fontSize = (Math.random() * 20 + 20) + 'px';
+          elem.style.zIndex = '2000';
+          elem.style.transition = 'transform 2.5s ease-out, opacity 2.5s';
+          document.body.appendChild(elem);
 
-    if (!name || !phone) {
-        alert("Заполните ваше имя и номер телефона.");
-        return;
+          setTimeout(() => {
+            elem.style.transform = `translateY(-${Math.random() * 80 + 30}vh) scale(${Math.random() + 0.5})`;
+            elem.style.opacity = '0';
+          }, 50);
+
+          setTimeout(() => elem.remove(), 2600);
+        }, i * 40);
+      }
     }
-
-    let brandName = brand.options[brand.selectedIndex].text;
-    let packageName = pack.options[pack.selectedIndex].text;
-    let serviceTypeName = serviceType.options[serviceType.selectedIndex].text;
-    let totalPrice = price.innerText.replace('₸', '').trim();
-
-    let text = `Здравствуйте! Хочу оформить заявку на сайте RAVIX.KZ\n\n` +
-               `🚗 *Марка/Модель:* ${brandName} ${model.value.trim()}\n` +
-               `🔢 *VIN:* ${vin.value.trim()}\n` +
-               `📦 *Пакет:* ${packageName}\n` +
-               `🛠 *Формат:* ${serviceTypeName}\n` +
-               `💰 *Ориентировочная цена:* ${totalPrice} ₸\n\n` +
-               `👤 *Имя:* ${name}\n` +
-               `📞 *Телефон:* ${phone}`;
-
-    let myPhone = "77077213460"; 
-    let whatsappUrl = `https://wa.me/${myPhone}?text=${encodeURIComponent(text)}`;
-
-    window.open(whatsappUrl, "_blank");
-    modal.classList.remove("active");
-});
-
-vin.addEventListener("input", function() {
-    vin.value = vin.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0,17);
-});
-</script>
-
+  </script>
 </body>
 </html>
